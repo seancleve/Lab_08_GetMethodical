@@ -6,10 +6,14 @@ public class DevTest
     {
         Scanner in = new Scanner(System.in);
         String firstName = "";
+        int age = 0;
+    /*
+        firstName = getNonZeroLenString(in,"Enter your first name");
 
-        firstName = getNonZeroLenString(in,"Enter your first name: ");
-
-
+        System.out.println("Name is " + firstName);
+*/
+        age = getInt(in, "Enter your age");
+        System.out.println("You said your age is " + age);
     }
 
     public static String getNonZeroLenString(Scanner pipe, String prompt)
@@ -28,4 +32,31 @@ public class DevTest
 
         return retVal;
     }
+
+    public static int getInt(Scanner pipe, String prompt)
+    {
+        int retVal = 0;
+        boolean done = false;
+        String trash = "";
+
+        do
+        {
+            System.out.print(prompt + ": ");
+            if(pipe.hasNextInt())
+            {
+                retVal = pipe.nextInt();
+                pipe.nextLine();
+                done = true;
+            }
+            else
+            {
+                trash = pipe.nextLine();
+                System.out.println("You must enter a valid integer not " + trash);
+            }
+
+        }while(!done);
+
+        return retVal;
+    }
+
 }
